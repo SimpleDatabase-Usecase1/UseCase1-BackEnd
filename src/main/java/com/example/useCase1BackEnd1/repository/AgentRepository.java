@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@EnableScan
+
 @Repository
+@EnableScan
 public interface AgentRepository extends CrudRepository<Agent, String> {
     Optional<Agent> findById (String id);
 }

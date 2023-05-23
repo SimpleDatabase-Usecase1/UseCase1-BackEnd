@@ -25,14 +25,6 @@ public class DynamoDBConfiguration {
     @Value("${secret_access_key}")
     private String dynamodbSecretKey;
 
-    public DynamoDBConfiguration(String dynamodbEndpoint, String awsRegion, String dynamodbAccessKey, String dynamodbSecretKey) {
-        this.dynamodbEndpoint = dynamodbEndpoint;
-        this.awsRegion = awsRegion;
-        this.dynamodbAccessKey = dynamodbAccessKey;
-        this.dynamodbSecretKey = dynamodbSecretKey;
-    }
-
-
     @Bean
     public DynamoDBMapper dynamoDBMapper() {
         return new DynamoDBMapper(buildAmazonDynamoDB());

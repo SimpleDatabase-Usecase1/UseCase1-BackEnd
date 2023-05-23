@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 public class AgentController {
 
-    @Autowired
+//    @Autowired
     CrudService crudService;
 
     //get all agents

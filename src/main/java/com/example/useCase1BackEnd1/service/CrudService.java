@@ -16,10 +16,10 @@ import java.util.Optional;
 public class CrudService {
 
     @Autowired
-    DynamoDBMapper dynamoDBMapper;
+    private DynamoDBMapper dynamoDBMapper;
 
-    @Autowired
-    AgentRepository agentRepository;
+
+    private AgentRepository agentRepository;
 
 
     //add new agent
