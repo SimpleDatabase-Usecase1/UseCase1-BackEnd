@@ -21,6 +21,7 @@ public class Agent {
     @DynamoDBAttribute
     private String keyword;
 
+
     //getter & setters
     public String getId() {
         return id;
