@@ -18,7 +18,7 @@ public class CrudService {
     @Autowired
     private DynamoDBMapper dynamoDBMapper;
 
-
+    @Autowired
     private AgentRepository agentRepository;
 
 
