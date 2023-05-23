@@ -6,7 +6,6 @@ package com.example.useCase1BackEnd1.service;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
-import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 import com.example.useCase1BackEnd1.model.Agent;
 import com.example.useCase1BackEnd1.repository.AgentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
