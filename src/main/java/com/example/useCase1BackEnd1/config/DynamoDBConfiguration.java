@@ -1,10 +1,5 @@
 package com.example.useCase1BackEnd1.config;
 
-
-//Config File from https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/creating-clients.html
-
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
@@ -16,21 +11,28 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-class DynamoDBConfiguration {
+public class DynamoDBConfiguration {
 
     @Value("${endpoint}")
-    private String endpoint;
+    private String dynamodbEndpoint;
 
     @Value("${region}")
-    private String region;
+    private String awsRegion;
 
     @Value("${access_key}")
-    private String accessKey;
+    private String dynamodbAccessKey;
 
     @Value("${secret_access_key}")
-    private String sercretAccessKey;
+    private String dynamodbSecretKey;
 
-    //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.html
+    public DynamoDBConfiguration(String dynamodbEndpoint, String awsRegion, String dynamodbAccessKey, String dynamodbSecretKey) {
+        this.dynamodbEndpoint = dynamodbEndpoint;
+        this.awsRegion = awsRegion;
+        this.dynamodbAccessKey = dynamodbAccessKey;
+        this.dynamodbSecretKey = dynamodbSecretKey;
+    }
+
+
     @Bean
     public DynamoDBMapper dynamoDBMapper() {
         return new DynamoDBMapper(buildAmazonDynamoDB());
@@ -40,9 +42,9 @@ class DynamoDBConfiguration {
         return AmazonDynamoDBClientBuilder
                 .standard()
                 .withEndpointConfiguration(
-                        new AwsClientBuilder.EndpointConfiguration(endpoint,region))
+                        new AwsClientBuilder.EndpointConfiguration(dynamodbEndpoint,awsRegion))
                 .withCredentials(new AWSStaticCredentialsProvider(
-                        new BasicAWSCredentials(accessKey,sercretAccessKey)))
+                        new BasicAWSCredentials(dynamodbAccessKey,dynamodbSecretKey)))
                 .build();
     }
 }

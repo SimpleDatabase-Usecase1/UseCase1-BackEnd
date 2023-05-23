@@ -1,6 +1,5 @@
 package com.example.useCase1BackEnd1.service;
 
-
 //service class for crud operations
 //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.Methods.html#DynamoDBMapper.Methods.save
 
