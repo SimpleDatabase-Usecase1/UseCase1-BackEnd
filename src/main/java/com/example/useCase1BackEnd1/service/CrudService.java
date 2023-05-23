@@ -46,7 +46,7 @@ public class CrudService {
     }
 
     //update agent
-    public Agent updateAgent(Agent agent, String agentId) {
+    public Agent updateAgent(String agentId, Agent agent) {
         Optional<Agent> agentRepo = agentRepository.findById(agentId);
 
         agentRepo.get().setKeyword(agent.getKeyword());
