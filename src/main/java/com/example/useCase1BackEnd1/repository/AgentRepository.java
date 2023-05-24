@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 @EnableScan
 public interface AgentRepository extends CrudRepository<Agent, String> {
-    Optional<Agent> findById (String id);
+//    Optional<Agent> findById (String id);
 }

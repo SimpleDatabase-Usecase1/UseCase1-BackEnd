@@ -3,8 +3,8 @@ package com.example.useCase1BackEnd1.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import lombok.Data;
 
+@DynamoDBDocument
 @DynamoDBTable(tableName = "Agents")
-@Data
 public class Agent {
 
     //Declare all necessary values for table

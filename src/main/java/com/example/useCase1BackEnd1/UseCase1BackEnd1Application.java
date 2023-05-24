@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = AgentController.class)
 public class UseCase1BackEnd1Application {
 
 	public static void main(String[] args) {

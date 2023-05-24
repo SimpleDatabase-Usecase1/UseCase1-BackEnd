@@ -2,7 +2,7 @@ package com.example.useCase1BackEnd1.controller;
 
 
 import com.example.useCase1BackEnd1.model.Agent;
-import com.example.useCase1BackEnd1.service.CrudService;
+import com.example.useCase1BackEnd1.service.AgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +14,15 @@ import java.util.List;
 @RestController
 public class AgentController {
 
+
     @Autowired
-    public CrudService crudService;
+    AgentService agentService;
 
     //get all agents
     @GetMapping("/getAllAgents")
     public ResponseEntity<List<Agent>> getAllAgents() {
         try {
-            List<Agent> allAgents = crudService.getAllAgents();
+            List<Agent> allAgents = agentService.getAgentList();
             return  ResponseEntity.ok(allAgents);
         } catch (HttpClientErrorException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -32,7 +33,7 @@ public class AgentController {
     @GetMapping("/getAgent/{id}")
     public ResponseEntity<Agent> getAgentById(@PathVariable("id") String agentId) {
         try {
-            return ResponseEntity.ok(crudService.getAgentsById(agentId));
+            return ResponseEntity.ok(agentService.getAgentById(agentId));
         }catch (HttpClientErrorException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -42,7 +43,7 @@ public class AgentController {
     @PostMapping("/addAgent")
     public ResponseEntity<Agent> addAgent(@RequestBody Agent agent) {
         try{
-            return ResponseEntity.ok(crudService.addAgent(agent));
+            return ResponseEntity.ok(agentService.addAgent(agent));
         } catch (HttpClientErrorException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -52,14 +53,14 @@ public class AgentController {
     //delete agent by id
     @DeleteMapping("/deleteAgent/{id}")
     public void deleteAgentById(@PathVariable("id") String agentId) {
-        crudService.deleteAgentById(agentId);
+        agentService.deleteAgentById(agentId);
     }
 
     //update agent by id
     @PutMapping("/updateAgent/{id}")
     public ResponseEntity<Agent> updateAgentById(@PathVariable("id") String agentId, @RequestBody Agent agent) {
         try {
-            return ResponseEntity.ok(crudService.updateAgent(agentId, agent));
+            return ResponseEntity.ok(agentService.updateAgentById(agentId, agent));
         } catch (HttpClientErrorException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
