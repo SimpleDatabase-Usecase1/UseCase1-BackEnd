@@ -3,6 +3,7 @@ package com.example.useCase1BackEnd1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class UseCase1BackEnd1Application {
 

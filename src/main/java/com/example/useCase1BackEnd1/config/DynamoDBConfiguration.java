@@ -1,10 +1,5 @@
 package com.example.useCase1BackEnd1.config;
 
-
-//Config File from https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/creating-clients.html
-
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
@@ -16,25 +11,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-class DynamoDBConfiguration {
+public class DynamoDBConfiguration {
 
     @Value("${endpoint}")
-    private String endpoint;
+    String endpoint;
 
     @Value("${region}")
-    private String region;
+    String region;
 
     @Value("${access_key}")
-    private String accessKey;
+    String accesskey;
 
     @Value("${secret_access_key}")
-    private String sercretAccessKey;
+    String secretkey;
 
-    //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.html
     @Bean
     public DynamoDBMapper dynamoDBMapper() {
         return new DynamoDBMapper(buildAmazonDynamoDB());
     }
+
 
     private AmazonDynamoDB buildAmazonDynamoDB() {
         return AmazonDynamoDBClientBuilder
@@ -42,7 +37,8 @@ class DynamoDBConfiguration {
                 .withEndpointConfiguration(
                         new AwsClientBuilder.EndpointConfiguration(endpoint,region))
                 .withCredentials(new AWSStaticCredentialsProvider(
-                        new BasicAWSCredentials(accessKey,sercretAccessKey)))
+                        new BasicAWSCredentials(accesskey,secretkey)))
                 .build();
     }
+
 }
