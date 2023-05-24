@@ -25,6 +25,11 @@ public class DynamoDBConfiguration {
     @Value("${secret_access_key}")
     private String dynamodbSecretKey;
 
+    @Bean
+    public DynamoDBMapper dynamoDBMapper() {
+        return new DynamoDBMapper(buildAmazonDynamoDB());
+    }
+
     private AmazonDynamoDB buildAmazonDynamoDB() {
         return AmazonDynamoDBClientBuilder
                 .standard()
@@ -35,8 +40,4 @@ public class DynamoDBConfiguration {
                 .build();
     }
 
-    @Bean
-    public DynamoDBMapper dynamoDBMapper() {
-        return new DynamoDBMapper(buildAmazonDynamoDB());
-    }
 }

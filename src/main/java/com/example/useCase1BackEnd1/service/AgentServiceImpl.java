@@ -1,6 +1,9 @@
 package com.example.useCase1BackEnd1.service;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.example.useCase1BackEnd1.model.Agent;
 import com.example.useCase1BackEnd1.repository.AgentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +14,20 @@ import java.util.List;
 @Service
 public class AgentServiceImpl implements AgentService {
 
-//    @Autowired
+    @Autowired
     DynamoDBMapper dbMapper;
 
     @Autowired
     AgentRepository agentRepository;
 
+//    @Override
+//    public List<Agent> getAgentList() {
+//        return (List<Agent>) dbMapper.load(Agent);
+//    }
+
     @Override
     public List<Agent> getAgentList() {
-        return (List<Agent>) agentRepository.findAll();
+        return null;
     }
 
     @Override
@@ -34,12 +42,14 @@ public class AgentServiceImpl implements AgentService {
     }
 
     @Override
-    public Agent updateAgentById(String agentId, Agent agent) {
-        agentRepository.findById(agentId);
-        agent.setPassword(agent.getPassword());
-        agent.setKeyword(agent.getKeyword());
-        agent.setUsername(agent.getUsername());
-        return agent;
+    public String updateAgentById(String agentId, Agent agent) {
+        dbMapper.save(agent,
+                new DynamoDBSaveExpression()
+                        .withExpectedEntry("customerId",
+                                new ExpectedAttributeValue(
+                                        new AttributeValue().withS(agentId)
+                                )));
+        return agentId;
     }
 
     @Override

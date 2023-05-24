@@ -8,6 +8,6 @@ public interface AgentService {
     List<Agent> getAgentList();
     Agent addAgent(Agent agent);
     Agent getAgentById(String agentId);
-    Agent updateAgentById(String agentId, Agent agent);
+    String updateAgentById(String agentId, Agent agent);
     void deleteAgentById(String agentId);
 }

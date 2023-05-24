@@ -3,6 +3,7 @@ package com.example.useCase1BackEnd1.controller;
 
 import com.example.useCase1BackEnd1.model.Agent;
 import com.example.useCase1BackEnd1.service.AgentService;
+import com.example.useCase1BackEnd1.service.AgentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +59,7 @@ public class AgentController {
 
     //update agent by id
     @PutMapping("/updateAgent/{id}")
-    public ResponseEntity<Agent> updateAgentById(@PathVariable("id") String agentId, @RequestBody Agent agent) {
+    public ResponseEntity<String> updateAgentById(@PathVariable("id") String agentId, @RequestBody Agent agent) {
         try {
             return ResponseEntity.ok(agentService.updateAgentById(agentId, agent));
         } catch (HttpClientErrorException e) {

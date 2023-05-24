@@ -3,21 +3,22 @@ package com.example.useCase1BackEnd1.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import lombok.Data;
 
-@DynamoDBDocument
+//@DynamoDBDocument
 @DynamoDBTable(tableName = "Agents")
+@Data
 public class Agent {
 
     //Declare all necessary values for table
     @DynamoDBHashKey(attributeName = "id")
     private String id;
 
-    @DynamoDBAttribute
+    @DynamoDBAttribute(attributeName = "username")
     private String username;
 
-    @DynamoDBAttribute
+    @DynamoDBAttribute(attributeName = "password")
     private String password;
 
-    @DynamoDBAttribute
+    @DynamoDBAttribute(attributeName = "keyword")
     private String keyword;
 
 
