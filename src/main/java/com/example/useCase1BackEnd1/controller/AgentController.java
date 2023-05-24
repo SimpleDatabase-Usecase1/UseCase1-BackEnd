@@ -1,9 +1,7 @@
 package com.example.useCase1BackEnd1.controller;
 
-
 import com.example.useCase1BackEnd1.model.Agent;
 import com.example.useCase1BackEnd1.service.AgentService;
-import com.example.useCase1BackEnd1.service.AgentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,6 @@ import java.util.List;
 @RestController
 public class AgentController {
 
-
     @Autowired
     AgentService agentService;
 
@@ -23,7 +20,7 @@ public class AgentController {
     @GetMapping("/getAllAgents")
     public ResponseEntity<List<Agent>> getAllAgents() {
         try {
-            List<Agent> allAgents = agentService.getAgentList();
+            List<Agent> allAgents = agentService.getAllAgents();
             return  ResponseEntity.ok(allAgents);
         } catch (HttpClientErrorException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -44,11 +41,10 @@ public class AgentController {
     @PostMapping("/addAgent")
     public ResponseEntity<Agent> addAgent(@RequestBody Agent agent) {
         try{
-            return ResponseEntity.ok(agentService.addAgent(agent));
+            return ResponseEntity.ok(agentService.saveAgent(agent));
         } catch (HttpClientErrorException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     //delete agent by id
@@ -59,7 +55,7 @@ public class AgentController {
 
     //update agent by id
     @PutMapping("/updateAgent/{id}")
-    public ResponseEntity<String> updateAgentById(@PathVariable("id") String agentId, @RequestBody Agent agent) {
+    public ResponseEntity<Agent> updateAgentById(@PathVariable("id") String agentId, @RequestBody Agent agent) {
         try {
             return ResponseEntity.ok(agentService.updateAgentById(agentId, agent));
         } catch (HttpClientErrorException e) {

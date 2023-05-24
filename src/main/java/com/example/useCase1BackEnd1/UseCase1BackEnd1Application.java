@@ -1,9 +1,7 @@
 package com.example.useCase1BackEnd1;
 
-import com.example.useCase1BackEnd1.controller.AgentController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication

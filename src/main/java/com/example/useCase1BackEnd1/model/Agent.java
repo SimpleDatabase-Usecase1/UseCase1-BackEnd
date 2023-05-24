@@ -1,11 +1,15 @@
 package com.example.useCase1BackEnd1.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 //@DynamoDBDocument
-@DynamoDBTable(tableName = "Agents")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@DynamoDBTable(tableName = "Agents")
 public class Agent {
 
     //Declare all necessary values for table
