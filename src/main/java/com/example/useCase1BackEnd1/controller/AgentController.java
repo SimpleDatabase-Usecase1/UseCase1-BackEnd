@@ -12,6 +12,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8081")
 public class AgentController {
 
     @Autowired
@@ -65,7 +66,7 @@ public class AgentController {
     }
 
     //login post request
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<LoginResponse> loginRequest(@RequestBody Agent agent) {
         return ResponseEntity.ok(new LoginResponse("Success !"));
     }
