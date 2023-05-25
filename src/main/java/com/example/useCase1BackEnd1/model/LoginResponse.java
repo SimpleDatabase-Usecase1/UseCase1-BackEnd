@@ -2,7 +2,7 @@ package com.example.useCase1BackEnd1.model;
 
 public class LoginResponse {
 
-    private String message;
+    String message;
     Boolean status;
 
     public Boolean getStatus() {
