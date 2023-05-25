@@ -1,8 +1,10 @@
 package com.example.useCase1BackEnd1.controller;
 
 import com.example.useCase1BackEnd1.model.Agent;
+import com.example.useCase1BackEnd1.model.LoginDTO;
 import com.example.useCase1BackEnd1.model.LoginResponse;
 import com.example.useCase1BackEnd1.service.AgentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +69,13 @@ public class AgentController {
 
     //login post request
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> loginRequest(@RequestBody Agent agent) {
-        return ResponseEntity.ok(new LoginResponse("Success !"));
+    public LoginResponse loginRequest(@Valid @RequestBody LoginDTO loginDTO) {
+        List<Agent> allAgents = agentService.getAllAgents();
+        for(Agent other: allAgents) {
+            if(other.getPassword().equals(loginDTO.getPassword()) && other.getUsername().equals(loginDTO.getUsername())){
+                return new LoginResponse("Login Successful", true);
+            }
+        }
+        return new LoginResponse("Login Unsuccessful", false);
     }
 }
