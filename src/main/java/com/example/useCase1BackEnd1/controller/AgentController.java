@@ -1,6 +1,7 @@
 package com.example.useCase1BackEnd1.controller;
 
 import com.example.useCase1BackEnd1.model.Agent;
+import com.example.useCase1BackEnd1.model.LoginResponse;
 import com.example.useCase1BackEnd1.service.AgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,5 +62,11 @@ public class AgentController {
         } catch (HttpClientErrorException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    //login post request
+    @PostMapping
+    public ResponseEntity<LoginResponse> loginRequest(@RequestBody Agent agent) {
+        return ResponseEntity.ok(new LoginResponse("Success !"));
     }
 }
