@@ -4,7 +4,17 @@ public class LoginResponse {
 
     String username;
     String message;
+    String keyword;
     Boolean status;
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
 
     public String getUsername() {
         return username;
@@ -35,9 +45,10 @@ public class LoginResponse {
         this.message = message;
     }
 
-    public LoginResponse(String username, String message, Boolean status) {
+    public LoginResponse(String username, String message, String keyword, Boolean status) {
         this.username = username;
         this.message = message;
+        this.keyword = keyword;
         this.status = status;
     }
 
