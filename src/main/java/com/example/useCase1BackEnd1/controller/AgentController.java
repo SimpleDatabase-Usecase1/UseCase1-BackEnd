@@ -73,9 +73,9 @@ public class AgentController {
         List<Agent> allAgents = agentService.getAllAgents();
         for(Agent other: allAgents) {
             if(other.getPassword().equals(loginDTO.getPassword()) && other.getUsername().equals(loginDTO.getUsername())){
-                return new LoginResponse(loginDTO.getUsername(), "Login Successful", true);
+                return new LoginResponse(loginDTO.getUsername(), "Login Successful", other.getKeyword(), true);
             }
         }
-        return new LoginResponse("User not Found", "Login Unsuccessful", false);
+        return new LoginResponse("404", "Login Unsuccessful", "Unauthorized", false);
     }
 }
