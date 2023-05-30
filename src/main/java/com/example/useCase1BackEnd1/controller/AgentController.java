@@ -6,6 +6,8 @@ import com.example.useCase1BackEnd1.model.LoginResponse;
 import com.example.useCase1BackEnd1.service.AgentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@Configuration
+@ComponentScan("com.example.useCase1BackEnd1")
 public class AgentController {
 
     @Autowired
