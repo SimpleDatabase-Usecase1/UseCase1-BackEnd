@@ -17,16 +17,16 @@ public class DynamoDBConfiguration {
 
     //deployment version of configuration:
 
-    @Value("${endpoint}")
+    @Value("https://dynamodb.us-east-1.amazonaws.com")
     private String dBEndpoint;
 
-    @Value("${region}")
+    @Value("us-east-1")
     private String amazonDynamoDBRegion;
 
-    @Bean
-    public DynamoDBMapper dynamoDBMapper() {
-        return new DynamoDBMapper(buildAmazonDynamoDB());
-    }
+//    @Bean
+//    public DynamoDBMapper dynamoDBMapper() {
+//        return new DynamoDBMapper(buildAmazonDynamoDB());
+//    }
 
     @Bean
     public AmazonDynamoDB buildAmazonDynamoDB() {
