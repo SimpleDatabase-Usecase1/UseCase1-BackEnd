@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@EnableDynamoDBRepositories
 public class DynamoDBConfiguration {
 
     //deployment version of configuration:
