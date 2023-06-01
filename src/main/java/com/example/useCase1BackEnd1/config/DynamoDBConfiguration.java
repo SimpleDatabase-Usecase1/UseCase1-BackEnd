@@ -13,17 +13,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DynamoDBConfiguration {
 
+    //deployment version of configuration:
+
     @Value("${endpoint}")
-    String endpoint;
+    private String dBEndpoint;
 
     @Value("${region}")
-    String region;
-
-    @Value("${access_key}")
-    String accesskey;
-
-    @Value("${secret_access_key}")
-    String secretkey;
+    private String amazonDynamoDBRegion;
 
     @Bean
     public DynamoDBMapper dynamoDBMapper() {
@@ -32,13 +28,37 @@ public class DynamoDBConfiguration {
 
     @Bean
     public AmazonDynamoDB buildAmazonDynamoDB() {
-        return AmazonDynamoDBClientBuilder
-                .standard()
-                .withEndpointConfiguration(
-                        new AwsClientBuilder.EndpointConfiguration(endpoint,region))
-                .withCredentials(new AWSStaticCredentialsProvider(
-                        new BasicAWSCredentials(accesskey,secretkey)))
+        return AmazonDynamoDBClientBuilder.standard()
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dBEndpoint, amazonDynamoDBRegion))
                 .build();
     }
+//below is not for deployment
+//    @Value("${endpoint}")
+//    String endpoint;
+//
+//    @Value("${region}")
+//    String region;
+//
+//    @Value("${access_key}")
+//    String accesskey;
+//
+//    @Value("${secret_access_key}")
+//    String secretkey;
+//
+//    @Bean
+//    public DynamoDBMapper dynamoDBMapper() {
+//        return new DynamoDBMapper(buildAmazonDynamoDB());
+//    }
+//
+//    @Bean
+//    public AmazonDynamoDB buildAmazonDynamoDB() {
+//        return AmazonDynamoDBClientBuilder
+//                .standard()
+//                .withEndpointConfiguration(
+//                        new AwsClientBuilder.EndpointConfiguration(endpoint,region))
+//                .withCredentials(new AWSStaticCredentialsProvider(
+//                        new BasicAWSCredentials(accesskey,secretkey)))
+//                .build();
+//    }
 
 }
