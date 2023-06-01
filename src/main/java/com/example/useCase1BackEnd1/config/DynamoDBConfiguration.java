@@ -23,10 +23,10 @@ public class DynamoDBConfiguration {
     @Value("us-east-1")
     private String amazonDynamoDBRegion;
 
-//    @Bean
-//    public DynamoDBMapper dynamoDBMapper() {
-//        return new DynamoDBMapper(buildAmazonDynamoDB());
-//    }
+    @Bean
+    public DynamoDBMapper dynamoDBMapper() {
+        return new DynamoDBMapper(buildAmazonDynamoDB());
+    }
 
     @Bean
     public AmazonDynamoDB buildAmazonDynamoDB() {
